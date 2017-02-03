@@ -37,7 +37,7 @@
                                 <input id="email" type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email Address" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="notification is-danger">
+                                    <span class="help is-danger">
                                         {{ $errors->first('email') }}
                                     </span>
                                 @endif

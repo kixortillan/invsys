@@ -40,7 +40,7 @@
                                 <input id="email" type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" value="{{ $email or old('email') }}" placeholder="Email Address" required autofocus>
 
                                 @if ($errors->has('email'))
-                                    <span class="notification is-danger">
+                                    <span class="help is-danger">
                                         {{ $errors->first('email') }}
                                     </span>
                                 @endif
@@ -65,7 +65,7 @@
                                 <input id="password" type="password" class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="password" placeholder="Password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    <span class="help is-danger">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
@@ -90,7 +90,7 @@
                                 <input id="password-confirm" type="password" class="input {{ $errors->has('password_confirmation') ? 'is-danger' : '' }}" placeholder="Re-type Password" name="password_confirmation" required>
 
                                 @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
+                                    <span class="help is-danger">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
