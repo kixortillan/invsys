@@ -17,6 +17,8 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
 Route::get('/', 'Auth\LoginController@showLoginForm');
+
+Route::get('/dashboard', 'DashboardController@index');
+
+

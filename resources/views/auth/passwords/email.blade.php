@@ -1,42 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
+<div class="container is-fluid">
+    <div class="columns">
+        <div class="column is-3 is-offset-4">
+            <div class="card">
+                <header class="card-header"><p class="card-header-title">Reset Password</p></header>
+                <div class="card-content">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="notification is-success">
+                            <button type="button" class="delete"></button>
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    <form role="form" method="POST" action="{{ url('/password/email') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="columns is-multiline">
+                            <!-- <div class="control is-horizontal">
+                                <div class="control-label">
+                                    <label for="email" class="label">E-Mail Address</label>
+                                </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <div class="control is-grouped">
+                                    <input id="email" type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                    @if ($errors->has('email'))
+                                        <span class="notification is-danger">
+                                            {{ $errors->first('email') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div> -->
+                            <div class="column is-12">
+                                <input id="email" type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email Address" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                    <span class="notification is-danger">
+                                        {{ $errors->first('email') }}
                                     </span>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <!-- <div class="control is-horizontal">
+                                <div class="">
+                                    <button type="submit" class="button is-primary">
+                                        Send Password Reset Link
+                                    </button>
+                                </div>
+                            </div> -->
+                            <div class="column is-12">
+                                <button type="submit" class="button is-primary is-fullwidth">
                                     Send Password Reset Link
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -1,34 +1,60 @@
 <template>
     <nav class="nav has-shadow">
         <div class="nav-left">
+            <slot name="nav-button"></slot>
             <a class="nav-item">
-                <img src="" alt="Brand">
+                <slot name="nav-brand">
+                    <img src="" alt="Brand">
+                </slot>
             </a>
-            <slot name="nav-items-left"></slot>
         </div>
-        
-        <div class="nav-center">
-            <slot name="nav-items-center"></slot>
-        </div>
-        
-        <slot name="nav-items-right"></slot>
 
         <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
         <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-        <span class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
+        <span class="nav-item is-hidden-tablet" @click="toggle">
+            <a class="button">
+                <span class="icon">
+                    <i class="fa fa-ellipsis-h"></i>
+                </span>
+            </a>
         </span>
+
+        <div class="nav-right nav-menu" :class="{ 'is-active':showNav }">
+            <slot name="nav-menu-links"></slot>
+        </div>
     </nav>
 </template>
+
+<style scoped>
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.nav-left {
+    overflow: hidden;
+}
+</style>
 
 <script>
 module.exports = {
     data: function (){
         return {
-
+            showNav: false
         };
-    }   
-}    
+    },
+
+    props: [
+        'navlinks'
+    ],
+ 
+    methods: {
+        toggle: function(event) {
+            event.stopPropagation();
+            this.showNav = !this.showNav;
+        }
+    }
+}
 </script>

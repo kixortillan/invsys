@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,15 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        if(class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class))
-        {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-        }
-        
-        if(class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class))
-        {
-            $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
-        }
+        $this->registerServiceProviders();
+        //dd(Config::get('modules'));
+        View::share('sidebar', json_encode(Config::get('modules')));
+        //View::share('navlinks');
     }
 
     /**
@@ -33,5 +30,23 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * Load service providers when available
+     * 
+     * @return 
+     */
+    private function registerServiceProviders()
+    {
+        if(class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class))
+        {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+        
+        if(class_exists(\Laravel\Tinker\TinkerServiceProvider::class))
+        {
+            $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
+        }
     }
 }

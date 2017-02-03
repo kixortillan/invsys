@@ -17,7 +17,7 @@ require('./bootstrap');
 
 Vue.component('vuelma-nav', require('./components/VuelmaNav.vue'));
 
-Vue.component('vuelma-sidebar', require('./components/VuelmaSidebar.vue'));
+Vue.component('vuelma-nav-offcanvas', require('./components/VuelmaNavOffcanvas.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -1,58 +1,59 @@
 <template>
     <div class="sidebar">
 
-        <nav class="nav has-shadow">
-            <div class="nav-left">
-                <span class="nav-item" @click="toggleNav">
-                    <a id="btn-menu" class="button">
-                        <span class="icon">
-                            <i class="fa fa-bars"></i>
-                        </span>
-                    </a>
-                </span>
-                <a class="nav-item">
-                    <slot name="nav-brand">
-                        <img src="" alt="Brand">
-                    </slot>
-                </a>
-            </div>
+        <vuelma-nav :navlinks="navlinks">
 
-            <slot name="nav-items-right"></slot>
-        </nav>
+            <span slot="nav-button" class="nav-item" @click="toggleNav">
+                <a id="btn-menu" class="button">
+                    <span class="icon">
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </a>
+            </span>
+
+            <template slot="nav-brand">
+                <slot name="nav-brand"></slot>
+            </template>
+
+            <template slot="nav-menu-links">
+                <slot name="nav-menu-links"></slot>
+            </template>
+            
+        </vuelma-nav>
 
         <div id="vuelma-sidebar-overlay" class="is-overlay" style="display: none;" @click="toggleNav"></div>
 
         <aside id="vuelma-sidebar" class="menu" :class="{ show: showSidebar }">
+
             <ul class="menu-list">
-                <li v-for="item in menu" @click="collapse">
-                    <a>
-                    {{ item.text }}
-                    <span v-if="item.hasOwnProperty('more')" class="icon is-small is-pulled-right">
-                        <i class="fa fa-caret-square-o-right"></i>
-                    </span>
+                <li v-for="(item, index) in menu" @click="collapse">
+                    <a v-if="typeof item === 'object'">
+                        {{ index }}
+                        <span class="icon is-small is-pulled-right">
+                            <i class="fa fa-caret-square-o-right"></i>
+                        </span>
                     </a>
-                    <ul v-if="item.hasOwnProperty('more')">
-                        <li v-for="innerItem in item.more">
-                            <a>{{ innerItem.text }}</a>
+                    <a v-else :href="item">{{ index }}</a>
+
+                    <ul v-if="typeof item === 'object'">
+                        <li v-for="(item, index) in item">
+                            <a :href="item">{{ index }}</a>
                         </li>
-                    </u>
+                    </ul>
                 </li>
             </ul>
+
         </aside>
 
     </div>
 </template>
 
 <style scoped>
-.nav-left {
-    overflow: hidden;
-}
-
 .menu-list > li > ul {
     display: none;
 }
 
-.menu-list a {
+.menu-list a {, ind
     border-radius: 0;
 }
 
@@ -68,7 +69,7 @@
 .menu {
     position: fixed;
     bottom: 0;
-    left: -300px;
+    left: -65%;
     top: 0;
     height: 100%;
     z-index: 10001;
@@ -102,7 +103,8 @@ module.exports = {
     },
 
     props: [
-        'menu'
+        'menu',
+        'navlinks'
     ],
  
     methods: {
