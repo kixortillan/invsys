@@ -21,4 +21,6 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('/verify/{id}/{token}', 'Auth\RegisterController@verify');
+
 
