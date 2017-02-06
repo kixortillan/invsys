@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Lib\RegistersUsersExt;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Lib\RegistersUsersExt;
+use App\Services\Auth\Registration;
 
 class RegisterController extends Controller
 {
@@ -34,13 +35,21 @@ class RegisterController extends Controller
     protected $redirectTo = '/login';
 
     /**
+     * Handles registration of users.
+     * 
+     * @var \App\Service\Registration
+     */
+    protected $service;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Registration $service)
     {
         $this->middleware('guest');
+        $this->service = $service;
     }
 
     /**
@@ -75,6 +84,6 @@ class RegisterController extends Controller
 
     public function verify(Request $request, $id, $token)
     {
-        dd($token);
+        $this->service->verify($id, $token);
     }
 }

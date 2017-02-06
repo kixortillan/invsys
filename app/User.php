@@ -42,13 +42,30 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function($user) {
-            $user->verify_token = bcrypt($user->id . $user->email . strtotime('now'));
+            $user->verify_token = hash_hmac("sha256", $user->id . $user->email . strtotime('now'), env('APP_KEY'));
         });
     }
 
+    /**
+     * Return true if user is already verified
+     * @return boolean 
+     */
     public function isVerified()
     {
         return $this->verified;
+    }
+
+    /**
+     * Verify user registration and clear registration token
+     * @return \App\User
+     */
+    public function verify()
+    {
+        $this->verified = true;
+        $this->verify_token = null;
+        $this->save();
+
+        return $this;
     }
 
 }

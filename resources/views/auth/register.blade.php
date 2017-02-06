@@ -56,7 +56,7 @@
 
                                 @if ($errors->has('email'))
                                     <span class="help is-danger">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        {{ $errors->first('email') }}
                                     </span>
                                 @endif
                             </div>

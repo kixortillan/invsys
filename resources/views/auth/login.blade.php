@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="column is-12">
-                                <button type="submit" class="button is-primary is-fullwidth is-outlined">
+                                <button type="submit" class="button is-primary is-fullwidth">
                                     Login
                                 </button>
                             </div>

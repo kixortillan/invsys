@@ -23,7 +23,7 @@ class UserVerified
         }
 
         if(!$user->isVerified()) {
-        	return redirect()->back()->with('message', 'Account is not yet verified. Please check your email.');
+        	return redirect()->back()->withErrors(['message' => 'Account is not yet verified. Please check your email.']);
         }
 
         return $next($request);
