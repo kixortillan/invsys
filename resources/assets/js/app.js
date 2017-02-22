@@ -15,10 +15,22 @@ require('./bootstrap');
 
 /*Vue.component('example', require('./components/Example.vue'));*/
 
+//Vue.component('vuelma-select', require('./components/VuelmaSelect.vue'));
+
 Vue.component('vuelma-nav', require('./components/VuelmaNav.vue'));
 
 Vue.component('vuelma-nav-offcanvas', require('./components/VuelmaNavOffcanvas.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    methods: {
+    //
+    search (text) {
+      //
+      let down = text.toLowerCase()
+
+      //
+      this.searched = this.options.filter((i) => i.name.toLowerCase().includes(down))
+    }
+  }
 });

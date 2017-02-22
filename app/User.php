@@ -48,6 +48,7 @@ class User extends Authenticatable
 
     /**
      * Return true if user is already verified
+     * 
      * @return boolean 
      */
     public function isVerified()
@@ -57,6 +58,7 @@ class User extends Authenticatable
 
     /**
      * Verify user registration and clear registration token
+     * 
      * @return \App\User
      */
     public function verify()

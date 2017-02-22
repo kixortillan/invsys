@@ -18,6 +18,8 @@ class AlterUsersTableAuthExt extends Migration
             $table->text('verify_token')->nullable();
             $table->softDeletes();
         });
+
+        Artisan::call('db:seed', ['--class' => 'UserSeeder']);
     }
 
     /**

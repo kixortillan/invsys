@@ -4,7 +4,7 @@ namespace App\Models\AuthExt;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Model\AuthExt\Access;
+use App\Models\AuthExt\Access;
 
 class Group extends Model
 {
@@ -23,7 +23,7 @@ class Group extends Model
      */
     public function access()
     {
-        return $this->hasMany(Access::class, 'group_access', 'group_id', 'access_id');
+        return $this->belongsToMany(Access::class, 'group_access', 'group_id', 'access_id')->withPivot('permission');
     }
 
 }

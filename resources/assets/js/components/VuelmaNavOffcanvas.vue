@@ -1,53 +1,3 @@
-<template>
-    <div class="sidebar">
-
-        <vuelma-nav :navlinks="navlinks">
-
-            <span slot="nav-button" class="nav-item" @click="toggleNav">
-                <a id="btn-menu" class="button">
-                    <span class="icon">
-                        <i class="fa fa-bars"></i>
-                    </span>
-                </a>
-            </span>
-
-            <template slot="nav-brand">
-                <slot name="nav-brand"></slot>
-            </template>
-
-            <template slot="nav-menu-links">
-                <slot name="nav-menu-links"></slot>
-            </template>
-            
-        </vuelma-nav>
-
-        <div id="vuelma-sidebar-overlay" class="is-overlay" style="display: none;" @click="toggleNav"></div>
-
-        <aside id="vuelma-sidebar" class="menu" :class="{ show: showSidebar }">
-
-            <ul class="menu-list">
-                <li v-for="(item, index) in menu" @click="collapse">
-                    <a v-if="typeof item === 'object'">
-                        {{ index }}
-                        <span class="icon is-small is-pulled-right">
-                            <i class="fa fa-caret-square-o-right"></i>
-                        </span>
-                    </a>
-                    <a v-else :href="item">{{ index }}</a>
-
-                    <ul v-if="typeof item === 'object'">
-                        <li v-for="(item, index) in item">
-                            <a :href="item">{{ index }}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-        </aside>
-
-    </div>
-</template>
-
 <style scoped>
 .menu-list > li > ul {
     display: none;
@@ -93,6 +43,56 @@
     }
 }
 </style>
+
+<template>
+    <div class="sidebar">
+
+        <vuelma-nav :navlinks="navlinks">
+
+            <span slot="nav-button" class="nav-item" @click="toggleNav">
+                <a id="btn-menu" class="button">
+                    <span class="icon">
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </a>
+            </span>
+
+            <template slot="nav-brand">
+                <slot name="nav-brand"></slot>
+            </template>
+
+            <template slot="nav-menu-links">
+                <slot name="nav-menu-links"></slot>
+            </template>
+            
+        </vuelma-nav>
+
+        <div id="vuelma-sidebar-overlay" class="is-overlay" style="display: none;" @click="toggleNav"></div>
+
+        <aside id="vuelma-sidebar" class="menu" :class="{ show: showSidebar }">
+
+            <ul class="menu-list">
+                <li v-for="(item, index) in menu" @click="collapse">
+                    <a v-if="typeof item === 'object'">
+                        {{ index }}
+                        <span class="icon is-small is-pulled-right">
+                            <i class="fa fa-caret-square-o-down"></i>
+                        </span>
+                    </a>
+                    <a v-else :href="item">{{ index }}</a>
+
+                    <ul v-if="typeof item === 'object'">
+                        <li v-for="(item, index) in item">
+                            <a :href="item">{{ index }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </aside>
+
+    </div>
+</template>
 
 <script>
 module.exports = {

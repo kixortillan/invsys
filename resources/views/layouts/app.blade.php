@@ -42,9 +42,9 @@
                 </a>
             @endif
         </vuelma-nav-offcanvas>
-        <div class="content-wrapper">
+        <section class="section">
             @yield('content')
-        </div>
+        </section>
     </div>
 
     <!-- Scripts -->

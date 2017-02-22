@@ -1,3 +1,16 @@
+<style scoped>
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.nav-left {
+    overflow: hidden;
+}
+</style>
+
 <template>
     <nav class="nav has-shadow">
         <div class="nav-left">
@@ -24,19 +37,6 @@
         </div>
     </nav>
 </template>
-
-<style scoped>
-.nav{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.nav-left {
-    overflow: hidden;
-}
-</style>
 
 <script>
 module.exports = {

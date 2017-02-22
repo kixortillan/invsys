@@ -2,7 +2,7 @@
 
 namespace App\Lib\Relation;
 
-use App\Model\AuthExt\Group;
+use App\Models\AuthExt\Group;
 
 trait UserGroupRelation
 {

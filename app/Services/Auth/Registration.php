@@ -39,7 +39,7 @@ class Registration
 		 | dashboard page
 		 */
 		$this->user->verify();
-		Auth::login($this->user);
+		Auth::guard()->login($this->user);
 		
 		return redirect('/dashboard');
 	}

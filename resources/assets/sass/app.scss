@@ -11,8 +11,12 @@
 //Bulma
 @import "node_modules/bulma/bulma.sass";
 
-
 //Font Awesome sass
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
 body { padding-top: 70px; }
+
+.datatable {
+	min-height: 500px;
+	overflow-x: scroll;
+}

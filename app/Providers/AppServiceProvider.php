@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        $this->registerServiceProviders();
+        $this->registerPackageProviders();
         //dd(Config::get('modules'));
         View::share('sidebar', json_encode(Config::get('modules')));
         //View::share('navlinks');
@@ -30,15 +30,15 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->bind(\App\Repositories\Contracts\UserRepositoryInterface::class, \App\Repositories\Eloquent\UserRepository::class);
+        $this->registerRepositoryProviders();
     }
 
     /**
-     * Load service providers when available
+     * Load service providers from packages when available
      * 
      * @return 
      */
-    private function registerServiceProviders()
+    private function registerPackageProviders()
     {
         if(class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class))
         {
@@ -49,6 +49,14 @@ class AppServiceProvider extends ServiceProvider
         {
             $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
         }
+    }
+
+    private function registerRepositoryProviders()
+    {
+        $this->app->bind(\App\Repositories\Contracts\Auth\UserRepositoryInterface::class, \App\Repositories\Eloquent\Auth\UserRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Auth\GroupRepositoryInterface::class, \App\Repositories\Eloquent\Auth\GroupRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Parts\PartNumberExtensionRepositoryInterface::class, \App\Repositories\Eloquent\Parts\PartNumberExtensionRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Parts\CatalogRepositoryInterface::class, \App\Repositories\Eloquent\Parts\CatalogRepository::class);
     }
 
 }

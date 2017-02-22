@@ -84,6 +84,6 @@ class RegisterController extends Controller
 
     public function verify(Request $request, $id, $token)
     {
-        $this->service->verify($id, $token);
+        return $this->service->verify($id, $token);
     }
 }
