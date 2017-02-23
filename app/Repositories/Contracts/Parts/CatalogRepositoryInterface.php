@@ -9,4 +9,6 @@ interface CatalogRepositoryInterface
 	public function create(array $data);
 
 	public function paginate(Paginate $paginate);
+
+	public function findById(int $id);
 }

@@ -58,9 +58,14 @@ class CatalogController extends Controller
 
 	}
 
-	public function edit()
+	public function edit(Request $request, $id)
 	{
+		$catalog = $this->catalogService->findById($id);
+		$pnes = $this->pneService->listAllPnes();
 
+		return view('parts.catalog.details', compact(
+			'catalog', 'pnes'
+		));
 	}
 
 	public function delete()

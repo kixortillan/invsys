@@ -15,7 +15,7 @@
 								<label class="label">Email</label>
 							</div>
 							<div class="control is-grouped">
-								<input class="input" value="{{ $user->email }}" placeholder="Name here" required />
+								<input class="input" value="{{ $user->email }}" placeholder="Name here" required >
 							</div>
 						</div>
 						<div class="control is-horizontal">
@@ -23,7 +23,7 @@
 								<label class="label">Name</label>
 							</div>
 							<div class="control is-grouped">
-								<input class="input" value="{{ $user->name }}" placeholder="Email here" required />
+								<input class="input" value="{{ $user->name }}" placeholder="Email here" required >
 							</div>
 						</div>
 						<button class="button is-pulled-right">Update</button>

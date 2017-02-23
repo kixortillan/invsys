@@ -29,4 +29,9 @@ class CatalogRepository implements CatalogRepositoryInterface
 
 		return $query->paginate($paginate->perPage());
 	}
+
+	public function findById(int $id)
+	{
+		return Catalog::findOrFail($id);
+	}
 }

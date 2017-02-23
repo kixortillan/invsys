@@ -35,7 +35,7 @@
 								<label class="label">Part Number</label>
 							</div>
 							<div class="control">
-								<input name="part_number" type="text" class="input" value="@if(isset($catalog)){{ trim($catalog->part_number) }}@else{{ trim(old('part_number')) }}@endif" required />
+								<input name="part_number" type="text" class="input" value="@if(isset($catalog)){{ trim($catalog->part_number) }}@else{{ trim(old('part_number')) }}@endif" required>
 							</div>
 						</div>
 						<div class="control is-horizontal">
@@ -47,12 +47,10 @@
 									<select name="pne_code" required>
 										<option value="">Please select a PNE code</option>
 										@foreach($pnes as $pne)
-											<option @if(old('pne_code') == $pne->code){{ "selected" }}@endif value="{{ $pne->code }}">{{ $pne->code }}</option>
+											<option @if(old('pne_code') == $pne->code || (isset($catalog) && $pne->code == $catalog->pne_code)){{ "selected" }}@endif value="{{ $pne->code }}">{{ $pne->code }}</option>
 										@endforeach
 									</select>
 								</span>
-								{{-- <input name="pne_code" type="text" class="input" value="@if(isset($catalog)){{ trim($catalog->pne_code) }}@else{{ trim(old('pne_code')) }}@endif" /> --}}
-								{{-- <vuelma-select placeholder="Select your PNE code" :search="true" @type="search" :options="['TWN', 'JPN']"></vuelma-select> --}}
 							</div>
 						</div>
 						<div class="control is-horizontal">
@@ -60,19 +58,19 @@
 								<label class="label">Brand</label>
 							</div>
 							<div class="control">
-								<input name="brand" type="text" class="input" value="@if(isset($catalog)){{ trim($catalog->brand) }}@else{{ trim(old('brand')) }}@endif" />
+								<input name="brand" type="text" class="input" value="@if(isset($catalog)){{ $catalog->brand }}@else{{ old('brand') }}@endif">
 							</div>
 						</div>
 						<div class="control is-horizontal">
 							<div class="control-label">
 								<label class="checkbox">
-									<input name="is_hazardous" type="checkbox" value="1" />
+									<input name="is_hazardous" type="checkbox" value="1" @if(isset($catalog) && $catalog->is_hazardous){{ "checked" }}@endif>
 									Hazardous
 								</label>
 							</div>
 							<div class="control-label">
 								<label class="checkbox">
-									<input name="has_expiration" type="checkbox" value="1" />
+									<input name="has_expiration" type="checkbox" value="1" @if(isset($catalog) && $catalog->has_expiration){{ "checked" }}@endif>
 									Expire
 								</label>
 							</div>
@@ -82,7 +80,7 @@
 								<label class="label">Description</label>
 							</div>
 							<div class="control">
-								<textarea name="description" class="textarea">@if(isset($catalog)){{ trim($catalog->description) }}@else{{ trim(old('description')) }}@endif</textarea>
+								<textarea name="description" class="textarea">@if(isset($catalog)){{ $catalog->description }}@else{{ old('description') }}@endif</textarea>
 							</div>
 						</div>
 						<button class="button is-pulled-right is-primary">@if(isset($catalog)){{ "Update" }}@else{{ "Create" }}@endif</button>

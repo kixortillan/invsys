@@ -5,6 +5,7 @@
 	<div class="box is-clearfix">
 		<div>
 			<h1 class="title is-inline">Catalog</h1>
+			<input type="file" name="" class="is-pulled-right">
 			<a class="button is-pulled-right is-primary" href="{{ url('/parts/catalogs/catalog') }}">New</a>
 		</div>
 	</div>

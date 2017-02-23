@@ -44,6 +44,7 @@ Route::delete('parts/pnes/pne/{code}', 'Parts\PartNumberExtensionController@dele
 Route::get('parts/catalogs', 'Parts\CatalogController@index');
 Route::get('parts/catalogs/catalog', 'Parts\CatalogController@showCreateForm');
 Route::post('parts/catalogs/catalog', 'Parts\CatalogController@store');
+Route::get('parts/catalogs/catalog/{id}', 'Parts\CatalogController@edit');
 
 /*
  | Routes for managing groups a user belongs to

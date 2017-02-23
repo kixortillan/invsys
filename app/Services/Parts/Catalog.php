@@ -33,4 +33,9 @@ class Catalog
 							->setOrder($settings['order_by'])
 		);
 	}
+
+	public function findById(int $id)
+	{
+		return $this->repo->findById($id);
+	}
 }

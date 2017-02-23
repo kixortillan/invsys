@@ -5,7 +5,7 @@ namespace App\Services\Auth;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\Auth\UserRepositoryInterface;
 
 class Registration
 {

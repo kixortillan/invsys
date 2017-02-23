@@ -28,7 +28,7 @@
 								<label class="label">Part Number Extension</label>
 							</div>
 							<div class="control">
-								<input name="code" type="text" class="input" value="@if(isset($pne)){{ trim($pne->code) }}@else{{ trim(old('code')) }}@endif" />
+								<input name="code" type="text" class="input" value="@if(isset($pne)){{ trim($pne->code) }}@else{{ trim(old('code')) }}@endif">
 							</div>
 						</div>
 						<div class="control is-horizontal">

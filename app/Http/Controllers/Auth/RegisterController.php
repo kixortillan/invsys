@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Lib\RegistersUsersExt;
+use App\Services\Auth\Registration;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Services\Auth\Registration;
 
 class RegisterController extends Controller
 {
