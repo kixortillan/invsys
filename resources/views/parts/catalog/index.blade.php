@@ -5,7 +5,11 @@
 	<div class="box is-clearfix">
 		<div>
 			<h1 class="title is-inline">Catalog</h1>
-			<input type="file" name="" class="is-pulled-right">
+			<form method="post" action="{{ url('/parts/catalogs/upload') }}" enctype="multipart/form-data">
+				{{ csrf_field() }}
+				<input type="file" name="file_catalogs" class="is-pulled-right">
+				<button class="button">Upload</button>
+			</form>
 			<a class="button is-pulled-right is-primary" href="{{ url('/parts/catalogs/catalog') }}">New</a>
 		</div>
 	</div>

@@ -45,6 +45,7 @@ Route::get('parts/catalogs', 'Parts\CatalogController@index');
 Route::get('parts/catalogs/catalog', 'Parts\CatalogController@showCreateForm');
 Route::post('parts/catalogs/catalog', 'Parts\CatalogController@store');
 Route::get('parts/catalogs/catalog/{id}', 'Parts\CatalogController@edit');
+Route::post('parts/catalogs/upload', 'Parts\CatalogController@upload');
 
 /*
  | Routes for managing groups a user belongs to

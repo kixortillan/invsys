@@ -2,6 +2,8 @@
 
 namespace App\Services\Parts;
 
+use SplFileInfo;
+use League\Csv\Reader;
 use App\Repositories\Utilities\Paginate;
 use App\Repositories\Contracts\Parts\CatalogRepositoryInterface;
 
@@ -37,5 +39,12 @@ class Catalog
 	public function findById(int $id)
 	{
 		return $this->repo->findById($id);
+	}
+
+	public function uploadCsv(SplFileInfo $file)
+	{
+		//dd($file);
+		$csv = Reader::createFromPath($file->getRealPath());
+		
 	}
 }

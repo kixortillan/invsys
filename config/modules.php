@@ -8,9 +8,14 @@ return [
 		'New' => '/inventory/new'
 	],
 
-	'SKU Management' => [
-		'View' => '/sku/management',
-		'New' => '/sku/management/create'
+	'Catalogs' => [
+		'List' => '/parts/catalogs',
+		'New' => '/parts/catalogs/catalog'
+	],
+
+	'Part Number Extensions' => [
+		'List' => '/parts/pnes',
+		'New' => '/parts/pnes/pne',
 	],
 
 	'Recieving' => [

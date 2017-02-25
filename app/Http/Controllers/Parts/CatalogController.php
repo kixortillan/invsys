@@ -53,9 +53,11 @@ class CatalogController extends Controller
 		return redirect()->back()->with(['message' => 'You have successfully created a new catalog.']);
 	}
 
-	public function uploadCatalog()
+	public function upload(Request $request)
 	{
+		$this->catalogService->uploadCsv($request->file('file_catalogs'));
 
+        return;
 	}
 
 	public function edit(Request $request, $id)
