@@ -1,0 +1,56 @@
+
+// Fonts
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//Bulma
+@import "node_modules/bulma/bulma.sass";
+
+//Font Awesome sass
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+@import "node_modules/handsontable/dist/handsontable.min";
+
+@import "node_modules/vue-multiselect/dist/vue-multiselect.min";
+
+.multiselect__input {
+	top: -5px;
+}
+
+.multiselect__tags {
+	height: 2.285em;
+	min-height: 0;
+	border-radius: 3px;
+	border: 1px solid #ccd0d2;
+}
+
+.multiselect__select {
+	height: 2.285em;
+}
+
+.multiselect {
+	height: 2.285em;
+}
+
+/*body { 
+	padding-top: 66px; 
+}*/
+
+.datatable {
+	min-height: 500px;
+	overflow-x: scroll;
+}
+
+.dark {
+    * {
+    	background-color: #222;
+    	border-color: #080808;
+    	color: #fff !important;
+    }
+}

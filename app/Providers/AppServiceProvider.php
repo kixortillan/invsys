@@ -55,8 +55,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(\App\Repositories\Contracts\Auth\UserRepositoryInterface::class, \App\Repositories\Eloquent\Auth\UserRepository::class);
         $this->app->bind(\App\Repositories\Contracts\Auth\GroupRepositoryInterface::class, \App\Repositories\Eloquent\Auth\GroupRepository::class);
-        $this->app->bind(\App\Repositories\Contracts\Parts\PartNumberExtensionRepositoryInterface::class, \App\Repositories\Eloquent\Parts\PartNumberExtensionRepository::class);
-        $this->app->bind(\App\Repositories\Contracts\Parts\CatalogRepositoryInterface::class, \App\Repositories\Eloquent\Parts\CatalogRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Part\PartNumberExtensionRepositoryInterface::class, \App\Repositories\Eloquent\Part\PartNumberExtensionRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Inventory\StockKeepingUnitRepositoryInterface::class, \App\Repositories\Eloquent\Inventory\StockKeepingUnitRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Part\BrandRepositoryInterface::class, \App\Repositories\Eloquent\Part\BrandRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Utilities\CurrencyRepositoryInterface::class, \App\Repositories\Eloquent\Utilities\CurrencyRepository::class);
     }
 
 }

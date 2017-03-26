@@ -4,15 +4,31 @@
     top: 0;
     left: 0;
     width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .nav-left {
     overflow: hidden;
 }
+
+.dark {
+    background-color: #222;
+    border-color: #080808;
+}
+
+.dark * {
+    background-color: #222;
+    border-color: #080808;  
+}
+
+.dark * {
+    color: #fff !important;
+}
 </style>
 
 <template>
-    <nav class="nav has-shadow">
+    <nav class="nav dark">
         <div class="nav-left">
             <slot name="nav-button"></slot>
             <a class="nav-item">

@@ -84,6 +84,11 @@ class Paginate
 		return $this->search;
 	}
 
+	public function searchPattern()
+	{
+		return "%{$this->search}%";
+	}
+
 	public function setPage($pageNum)
 	{
 		$this->page = $pageNum;

@@ -3,19 +3,19 @@
 return [
 	'Dashboard' => '/dashboard',
 
-	'Inventory' => [
-		'View' => '/inventory',
-		'New' => '/inventory/new'
-	],
-
-	'Catalogs' => [
-		'List' => '/parts/catalogs',
-		'New' => '/parts/catalogs/catalog'
+	'Parts Master File' => [
+		'List' => '/inventory/skus',
+		'New' => '/inventory/skus/sku'
 	],
 
 	'Part Number Extensions' => [
 		'List' => '/parts/pnes',
 		'New' => '/parts/pnes/pne',
+	],
+
+	'Brands' => [
+		'List' => '/parts/brands',
+		'New' => '/parts/brands/brand'
 	],
 
 	'Recieving' => [
