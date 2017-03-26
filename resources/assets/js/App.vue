@@ -44,7 +44,7 @@
 			<v-sidebar left fixed drawer v-model="sidebar">
 				<v-list>
 					<v-list-item v-for="route in routes">
-						<v-list-tile>
+						<v-list-tile v-if="route.show === true">
 							<v-list-tile-title>
 								<router-link :to="{ path: route.path }" class="white--text">
 								{{ route.text }}

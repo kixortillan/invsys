@@ -5,15 +5,40 @@ Vue.use(VueRouter)
 
 export const routes = [
     
-    {path: '/home', text: 'Dashboard', component: require('./views/Home.vue')},
+    {
+    	path: '/home', 
+    	text: 'Dashboard', 
+    	component: require('./views/Home.vue'), 
+    	show: true
+    },
 
-    {path: '/receiving/reports', text: 'Receiving', component: require('./views/receiving/Index.vue')},
+    {
+    	path: '/receiving/reports', 
+    	text: 'Receiving Report', 
+    	component: require('./views/receiving/Index.vue'), 
+    	show: true
+    },
 
-	{path: '/receiving/reports/report', component: require('./views/receiving/Create.vue')},    
+    {
+    	path: '/receiving/reports/report', 
+    	text: 'New Receiving Report', 
+    	component: require('./views/receiving/Create.vue'), 
+    	show: false
+    },
 
-	{path: '/brands', text: 'Brands', component: require('./views/part/brand/Index.vue')},
+	{
+		path: '/brands', 
+		text: 'Brands', 
+		component: require('./views/part/brand/Index.vue'), 
+		show: true
+	},
 
-	{path: '/pnes', text: 'Part Number Ext.', component: require('./views/part/pne/Index.vue')},    
+	{
+		path: '/pnes', 
+		text: 'Part Number Ext.', 
+		component: require('./views/part/pne/Index.vue'), 
+		show: true
+	},    
 
 ]
 

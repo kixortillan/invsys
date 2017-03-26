@@ -47356,11 +47356,36 @@ window.axios.defaults.headers.common = {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/home', text: 'Dashboard', component: __webpack_require__(64) }, { path: '/receiving/reports', text: 'Receiving', component: __webpack_require__(65) }, { path: '/receiving/reports/report', component: __webpack_require__(101) }, { path: '/brands', text: 'Brands', component: __webpack_require__(98) }, { path: '/pnes', text: 'Part Number Ext.', component: __webpack_require__(99) }];
+var routes = [{
+  path: '/home',
+  text: 'Dashboard',
+  component: __webpack_require__(64),
+  show: true
+}, {
+  path: '/receiving/reports',
+  text: 'Receiving Report',
+  component: __webpack_require__(65),
+  show: true
+}, {
+  path: '/receiving/reports/report',
+  text: 'New Receiving Report',
+  component: __webpack_require__(101),
+  show: false
+}, {
+  path: '/brands',
+  text: 'Brands',
+  component: __webpack_require__(98),
+  show: true
+}, {
+  path: '/pnes',
+  text: 'Part Number Ext.',
+  component: __webpack_require__(99),
+  show: true
+}];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    mode: 'history',
-    routes: routes
+  mode: 'history',
+  routes: routes
 });
 
 /***/ }),
@@ -65117,14 +65142,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('v-list', _vm._l((_vm.routes), function(route) {
-    return _c('v-list-item', [_c('v-list-tile', [_c('v-list-tile-title', [_c('router-link', {
+    return _c('v-list-item', [(route.show === true) ? _c('v-list-tile', [_c('v-list-tile-title', [_c('router-link', {
       staticClass: "white--text",
       attrs: {
         "to": {
           path: route.path
         }
       }
-    }, [_vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(route.text) + "\n\t\t\t\t\t\t\t\t")])], 1)], 1)], 1)
+    }, [_vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(route.text) + "\n\t\t\t\t\t\t\t\t")])], 1)], 1) : _vm._e()], 1)
   }))], 1), _vm._v(" "), _c('v-content', {
     staticClass: "secondary z-depth-0"
   }, [_c('router-view')], 1)], 1), _vm._v(" "), _c('v-footer', [_c('div', {
