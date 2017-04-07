@@ -29,10 +29,10 @@
 							<v-row>
 								<v-col sm1></v-col>
 								<v-col sm5>
-									<v-text-field v-model="invoiceNum" label="Invoce #"></v-text-field>
+									<v-text-field v-model="invoiceNum" label="Invoce #" required :rules="validation.invoiceNum"></v-text-field>
 								</v-col>
 								<v-col sm5>
-									<v-text-field v-model="orNum" label="Official Receipt #"></v-text-field>
+									<v-text-field v-model="orNum" label="Official Receipt #" :rules="validation.officialReceipt"></v-text-field>
 								</v-col>
 								<v-col sm1></v-col>
 							</v-row>
@@ -64,6 +64,8 @@
 
 <script>
 import Handsontable from 'handsontable/dist/handsontable.full'
+import Validation from '../../validation/form'
+
 
 export default {
 
@@ -83,7 +85,50 @@ export default {
 			orNum: null,
 			
 			//spreadsheet containing list of item being received
-			sheet: null
+			sheet: null,
+
+			//
+			validation: {
+				
+				//
+				invoiceNum: [
+					
+					() => {
+						if(this.invoiceNum == null){
+							return true
+						}
+
+						if(!Validation.isEmpty(this.invoiceNum)){
+							return 'This field is required.'
+						}
+
+						return true;
+					},
+
+					() => {
+						if(!Validation.alphaDash(this.invoiceNum)){
+							return 'This field must contain alphanumeric, hyphen, or underscore only.';
+						}
+
+						return true;
+					}
+
+				],
+
+				//
+				officialReceipt: [
+
+					() => {
+						if(!Validation.alphaDash(this.orNum)){
+							return 'This field must contain alphanumeric, hyphen, or underscore only.';
+						}
+
+						return true;
+					}
+
+				]
+
+			}
 
 		}
 

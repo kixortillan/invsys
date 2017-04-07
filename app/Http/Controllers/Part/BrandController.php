@@ -7,6 +7,9 @@ use App\Services\Part\Brand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Part\StoreBrand;
 use App\Http\Requests\Part\UpdateBrand;
+use App\Transformers\Part\BrandTransformer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 
 class BrandController extends Controller
 {
@@ -14,19 +17,21 @@ class BrandController extends Controller
 
     public function __construct(Brand $brandService)
     {
-        $this->middleware('auth');
+        parent::__construct();
+        //$this->middleware('auth');
         $this->brandService = $brandService;
     }
 
     public function index(Request $request)
     {
-        $brands = $this->brandService->listBrands($request->only([
-            'search', 'sort', 'order_by',
+        $paginator = $this->brandService->listBrands($request->only([
+            'search', 'sort', 'order_by', 'page', 'per_page'
         ]));
 
-        return view('part.brand.index', compact(
-            'brands'
-        ));
+        $resource = new Collection($paginator->getDictionary(), 
+            new BrandTransformer, 'brands');
+
+        return response()->json($this->fractal->createData($resource)->toArray());
     }
 
     public function showCreateForm(Request $request)
@@ -36,11 +41,13 @@ class BrandController extends Controller
 
     public function store(StoreBrand $request)
     {
-        $this->brandService->createNew($request->only([
+        $brand = $this->brandService->createNew($request->only([
             'name', 'description'
         ]));
 
-        return redirect()->route('list-brands')->with('message', 'A new brand has been added successfully.');
+        $resource = new Item($brand, new BrandTransformer, 'brands');
+
+        return response()->json($this->fractal->createData($resource)->toArray());
     }
 
     public function edit(Request $request, $name)

@@ -15,9 +15,17 @@
     return view('welcome');
 });*/
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/', 'Auth\LoginController@showLoginForm');
+//Route::get('/', 'Auth\LoginController@showLoginForm');
+
+// Route::get('/', function(){
+// 	return view('app');
+// });
+
+Route::any('/{all}', function(){
+	return view('app');
+})->where(['all' => '.*']);
 
 // Route::get('/dashboard', 'DashboardController@index');
 
@@ -30,11 +38,11 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 //  | Routes for Part Number Extensions
 //  |
 //  */
-// Route::get('parts/pnes', 'Part\PartNumberExtensionController@index')
-// 	->name('list-pnes');
+//Route::get('parts/pnes', 'Part\PartNumberExtensionController@index')
+//	->name('list-pnes');
 // Route::get('parts/pnes/pne', 'Part\PartNumberExtensionController@showCreateForm')
 // 	->name('new-pnes-form');
-// Route::post('parts/pnes/pne', 'Part\PartNumberExtensionController@store')
+//Route::post('parts/pnes/pne', 'Part\PartNumberExtensionController@store')
 // 	->name('new-pnes');
 // Route::get('parts/pnes/pne/{code}', 'Part\PartNumberExtensionController@edit')
 // 	->name('view-pnes');
@@ -107,9 +115,3 @@ Route::post('/inventory/receiving/reports/report', 'Inventory\ReceivingControlle
 // Route::get('/app/management/groups', 'UserManagement\GroupController@index');
 
 Route::get('/inventory/binnings/location/search', 'Inventory\BinController@searchLocation');
-
-Route::get('/config/currencies/search', 'Config\CurrencyController@searchLocation');
-
-Route::any('{all}', function(){
-	return view('app');
-})->where(['all' => '.*']);

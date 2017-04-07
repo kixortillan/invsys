@@ -12,11 +12,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-        	'email' => 'superadmin@salesandaftersales.com',
-        	'name' => 'Super Admin',
-        	'password' => 'sup3r@dm1n',
-        	'verified' => true
-    	]);
+        if(!User::where('email', 'superadmin@salesandaftersales.com')->first()){
+            User::create([
+                'email' => 'superadmin@salesandaftersales.com',
+                'name' => 'Super Admin',
+                'password' => 'sup3r@dm1n',
+                'verified' => true
+            ]);
+        }
     }
 }

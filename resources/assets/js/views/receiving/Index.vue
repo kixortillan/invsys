@@ -27,41 +27,6 @@
 					</v-card-row>
 
 					<v-card-row>
-<!-- 
-						<v-container fluid>
-
-							<v-row>
-								<v-col xs4>
-									<v-subheader v-text="headers[0]" />
-								</v-col>
-								<v-col xs3>
-									<v-subheader v-text="headers[1]" />
-								</v-col>
-								<v-col xs3>
-									<v-subheader v-text="headers[2]" />
-								</v-col>
-								<v-col xs2></v-col>
-							</v-row>
-
-							<v-divider></v-divider>
-
-							<template v-for="item in items">
-								<v-row>
-									<v-col xs4>
-										<p>{{ item.transaction_id }}</p>
-									</v-col>
-									<v-col xs3>
-										<p>{{ item.invoice_number }}</p>
-									</v-col>
-									<v-col xs3>
-										<p>{{ item.official_receipt_number }}</p>
-									</v-col>
-									<v-col xs2></v-col>
-								</v-row>
-								<v-divider></v-divider>
-							</template>
-
-						</v-container> -->
 
 						<v-table-overflow class="datatable pa-3">
 							<table>
@@ -141,7 +106,7 @@ export default {
 
 		reload(){
 
-			axios.get('/inventory/receiving/reports', {
+			this.$http.get('/inventory/receiving/reports', {
 					
 					params: {
 						page: this.page,

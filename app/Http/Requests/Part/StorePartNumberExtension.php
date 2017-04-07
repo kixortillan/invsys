@@ -24,7 +24,7 @@ class StorePartNumberExtension extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'bail|required|alpha_dash|unique:part_number_extensions,code|max:30',
+            'pne_code' => 'bail|required|alpha_dash|unique:part_number_extensions,code|max:30',
             'description' => 'bail|present|nullable|max:64'
         ];
     }

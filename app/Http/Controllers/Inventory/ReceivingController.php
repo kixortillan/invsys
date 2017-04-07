@@ -14,17 +14,12 @@ use App\Http\Controllers\Controller;
 
 class ReceivingController extends Controller
 {
-	private $fractal;
 
     public function __construct()
     {
-    	$this->fractal = new Manager();
+        parent::__construct();
+    	$this->middleware('auth');
     }
-
-    // public function showCreateForm(Request $request)
-    // {
-    // 	return view('inventory.receiving.details');
-    // }
     
     public function index(Request $request)
     {

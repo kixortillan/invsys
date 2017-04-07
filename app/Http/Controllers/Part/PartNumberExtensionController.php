@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Part;
 
+use App\Transformers\Part\PartNumberExtensionTransformer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Part\PartNumberExtension;
@@ -13,21 +16,23 @@ class PartNumberExtensionController extends Controller
 
 	public function __construct(PartNumberExtension $service)
 	{
-		$this->middleware('auth');
+		parent::__construct();
+		//$this->middleware('auth');
 		$this->service = $service;
 	}
 
 	public function index(Request $request)
 	{
-		$pnes = $this->service->listPnes([
+		$paginator = $this->service->listPnes([
 			'search' => $request->get('search'),
 			'sort' => $request->get('sort'),
 			'order_by' => $request->get('order_by')
 		]);
 
-		return view('part.pne.index', compact(
-			'pnes'
-		));
+		$resource = new Collection($paginator->getDictionary(), 
+			new PartNumberExtensionTransformer, 'part_number_extensions');
+
+		return response()->json($this->fractal->createData($resource)->toArray());
 	}
 
 	public function showCreateForm(Request $request)
@@ -37,11 +42,14 @@ class PartNumberExtensionController extends Controller
 
 	public function store(StorePartNumberExtension $request)
 	{
-		$this->service->createNew($request->only([
-			'code', 'description'
-		]));
+		$pne = $this->service->createNew([
+			'code' => $request->get('pne_code'),
+			'description' => $request->get('description')
+		]);
 
-		return redirect('/parts/pnes');
+		$resource = new Item($pne, new PartNumberExtensionTransformer, 'part_number_extensions');
+
+		return response()->json($this->fractal->createData($resource)->toArray());
 	}
 
 	public function edit(Request $request, $code)

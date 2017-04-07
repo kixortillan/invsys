@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Services\Part\PartNumberExtension;
 use App\Services\Inventory\StockKeepingUnit;
 use App\Http\Requests\Inventory\StoreStockKeepingUnit;
+use App\Transformers\Inventory\StockKeepingUnitTransformer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 
 class StockKeepingUnitController extends Controller
 {
@@ -17,22 +20,24 @@ class StockKeepingUnitController extends Controller
 
 	public function __construct(StockKeepingUnit $skuService, PartNumberExtension $pneService)
 	{
-		$this->middleware('auth');
+		parent::__construct();
+		//$this->middleware('auth');
 		$this->skuService = $skuService;
 		$this->pneService = $pneService;
 	}
 
 	public function index(Request $request)
 	{
-		$catalogs = $this->skuService->listStockKeepingUnits([
+		$paginator = $this->skuService->listStockKeepingUnits([
 			'search' => $request->get('search'),
 			'sort' => $request->get('sort'),
 			'order_by' => $request->get('order_by')
 		]);
 
-		return view('inventory.sku.index', compact(
-			'catalogs'
-		));	
+		$resource = new Collection($paginator->getDictionary(), 
+            new StockKeepingUnitTransformer, 'skus');
+
+        return response()->json($this->fractal->createData($resource)->toArray());
 	}
 
 	public function showCreateForm(Request $request)
@@ -48,13 +53,16 @@ class StockKeepingUnitController extends Controller
 
 	public function store(StoreStockKeepingUnit $request)
 	{
-		$this->skuService->createNew($request->only([
+		$sku = $this->skuService->createNew($request->only([
 			'part_number', 'brand', 'pne_code', 'description',
-			'is_hazardous', 'has_expiration', 'srp', 'srp_currency',
-			 'cost', 'cost_currency',
+			'is_hazardous', 'has_expiration', 'on_hand', 'available',
+			'reserved', 'on_order', 'issued', 'unserved', 'srp', 
+			'srp_currency', 'cost', 'cost_currency',
 		]));
 
-		return redirect()->back()->with(['message' => 'You have successfully created a new catalog.']);
+		$resource = new Item($sku, new StockKeepingUnitTransformer, 'skus');
+
+		return response()->json($this->fractal->createData($resource)->toArray());
 	}
 
 	public function upload(Request $request)

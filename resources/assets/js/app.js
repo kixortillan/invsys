@@ -10,9 +10,47 @@ require('./bootstrap');
 /**
  * 
  */
-import {router, routes} from './router'
+import routes from './routes'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+window.router = new VueRouter({
+	mode: 'history',
+    routes: routes
+})
+
+window.access_token = null;
+window.refresh_token = null;
+window.token_expires = null;
+
+Vue.http.interceptors.push(function(request, next){
+
+    // modify headers
+    request.headers.set('X-Requested-With', 'XMLHttpRequest');
+    
+    next(function(response){
+
+        /**
+         * Redirect to login if received unauthorized requests
+         * 
+         */
+        if(response.status === 401 && response.data.error === 'Unauthenticated.'){
+            router.push("/");  
+        }
+
+    });
+});
+
 
 import config from './config'
+
+/**
+ * 
+ */
+import VeeValidate from 'vee-validate'
+
+Vue.use(VeeValidate)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

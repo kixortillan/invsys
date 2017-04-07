@@ -18,7 +18,7 @@ class Brand
 
 	public function createNew(array $data)
 	{
-		$this->repo->create($data);
+		return $this->repo->create($data);
 	}
 
 	public function findByName(string $name)
